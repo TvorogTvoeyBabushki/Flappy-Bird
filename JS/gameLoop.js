@@ -1,5 +1,6 @@
 export default class GameLoop {
-    constructor(draw) {
+    constructor(updata, draw) {
+        this.updata = updata
         this.draw = draw
 
         this.animation()
@@ -8,6 +9,7 @@ export default class GameLoop {
     animation() {
         requestAnimationFrame(this.animation.bind(this))
 
+        this.updata()
         this.draw()
     }
 }

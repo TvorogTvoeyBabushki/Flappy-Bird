@@ -1,3 +1,5 @@
+import Config from "./config.js"
+
 export default class Canvas {
     constructor() {
         this.element = document.getElementById('flappy-bird')
@@ -12,14 +14,14 @@ export default class Canvas {
         this.foreground = new Image()
         this.foreground.src = 'Images/foreground.png'
 
-        this.index = 0
-        this.speed = 1
         this.backgroundX = 0
+
+        this.config = new Config()
     }
 
     draw() {
-        this.index++
-        this.backgroundX = -((this.index * this.speed) % this.element.width)
+        this.config.index += .3
+        this.backgroundX = -((this.config.index * this.config.speedBackground) % this.element.width)
 
         this.context.drawImage(this.background, this.backgroundX, 0)
         this.context.drawImage(this.background, this.backgroundX + this.element.width, 0)
