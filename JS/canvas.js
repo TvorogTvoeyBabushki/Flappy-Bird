@@ -26,7 +26,7 @@ export default class Canvas {
         this.context.drawImage(this.background, this.backgroundX, 0)
         this.context.drawImage(this.background, this.backgroundX + this.element.width, 0)
 
-        this.context.drawImage(this.foreground, this.backgroundX, this.background.height)
-        this.context.drawImage(this.foreground, this.backgroundX + this.element.width, this.background.height)
+        // this.context.drawImage(this.foreground, this.backgroundX, this.background.height)
+        // this.context.drawImage(this.foreground, this.backgroundX + this.element.width, this.background.height)
     }
 }

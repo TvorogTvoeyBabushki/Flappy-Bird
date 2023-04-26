@@ -9,3 +9,20 @@ body {
     height: 100vh;
     align-items: center;
 }
+
+.btn-flappy-bird {
+    display: none;
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 5px;
+    outline: none;
+
+    cursor: pointer;
+
+    position: absolute;
+}
+
+.btn-flappy-bird.active {
+    display: inline-block
+}
