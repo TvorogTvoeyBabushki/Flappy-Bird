@@ -25,7 +25,8 @@ class Game {
         this.canvas.draw()
         this.pipe.draw()
         this.bird.draw()
-        this.score.draw()
+        this.score.draw(
+        )
     }
 }
 

@@ -42,8 +42,9 @@ export default class Pipe {
             }
 
             if (bird.birdPositionX + bird.birdWidth >= pipe.x && bird.birdPositionX <= pipe.x + this.pipeUp.width && (bird.birdPositionY <= pipe.y - 10 + this.pipeUp.height - 200 || bird.birdPositionY + bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || bird.birdPositionY + bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
-                gameLoop.cancelAnimation()
+                score.score = ''
 
+                gameLoop.cancelAnimation()
                 windowGameOver.draw()
             }
         })

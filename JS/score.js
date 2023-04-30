@@ -6,10 +6,11 @@ export default class Score {
 
         this.score = 0
         this.positionX
+        this.incscore = 0
     }
 
     increaseScore() {
-        this.score++
+        this.incscore = this.score++
     }
 
     draw() {
