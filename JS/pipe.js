@@ -22,7 +22,7 @@ export default class Pipe {
         }]
     }
 
-    updata(bird, score, gameLoop) {
+    updata(bird, score, gameLoop, windowGameOver) {
         this.pipe.forEach(pipe => {
             pipe.x--
 
@@ -37,12 +37,14 @@ export default class Pipe {
                 this.pipe.shift()
             }
 
-            if(pipe.x === 125) {
+            if (pipe.x === 125) {
                 score.increaseScore()
             }
 
             if (bird.birdPositionX + bird.birdWidth >= pipe.x && bird.birdPositionX <= pipe.x + this.pipeUp.width && (bird.birdPositionY <= pipe.y - 10 + this.pipeUp.height - 200 || bird.birdPositionY + bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || bird.birdPositionY + bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
-                gameLoop // ???
+                gameLoop.cancelAnimation()
+
+                windowGameOver.draw()
             }
         })
     }

@@ -3,17 +3,17 @@ export default class GameLoop {
         this.updata = updata
         this.draw = draw
 
-        this.animation()
+        this.idAnimation = this.animation()
     }
 
     animation() {
-        requestAnimationFrame(this.animation.bind(this))
+        this.idAnimation = requestAnimationFrame(this.animation.bind(this))
 
         this.updata()
         this.draw()
     }
-    
+
     cancelAnimation() {
-        cancelAnimationFrame(/* ? */)
+        cancelAnimationFrame(this.idAnimation)
     }
 }

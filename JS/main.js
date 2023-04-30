@@ -17,7 +17,7 @@ class Game {
     }
 
     updata() {
-        this.pipe.updata(this.bird, this.score /*, this.gameLoop.cancelAnimation() */)
+        this.pipe.updata(this.bird, this.score, this.gameLoop, this.windowGameOver)
         this.bird.updata()
     }
 
@@ -26,7 +26,6 @@ class Game {
         this.pipe.draw()
         this.bird.draw()
         this.score.draw()
-        // this.windowGameOver.draw()
     }
 }
 
