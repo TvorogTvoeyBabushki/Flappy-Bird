@@ -3,6 +3,7 @@ import GameLoop from "./gameLoop.js";
 import Pipe from "./pipe.js";
 import Bird from "./bird.js";
 import Score from "./score.js";
+import WindowGameOver from "./windowGameOver.js";
 
 class Game {
     constructor() {
@@ -10,12 +11,13 @@ class Game {
         this.pipe = new Pipe()
         this.bird = new Bird()
         this.score = new Score()
-        
-        new GameLoop(this.updata.bind(this) ,this.draw.bind(this))
+        this.windowGameOver = new WindowGameOver()
+
+        this.gameLoop = new GameLoop(this.updata.bind(this), this.draw.bind(this))
     }
 
     updata() {
-        this.pipe.updata()
+        this.pipe.updata(this.bird, this.score /*, this.gameLoop.cancelAnimation() */)
         this.bird.updata()
     }
 
@@ -24,6 +26,7 @@ class Game {
         this.pipe.draw()
         this.bird.draw()
         this.score.draw()
+        // this.windowGameOver.draw()
     }
 }
 

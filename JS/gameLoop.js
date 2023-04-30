@@ -12,4 +12,8 @@ export default class GameLoop {
         this.updata()
         this.draw()
     }
+    
+    cancelAnimation() {
+        cancelAnimationFrame(/* ? */)
+    }
 }

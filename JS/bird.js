@@ -1,12 +1,10 @@
 import Canvas from "./canvas.js"
 import Config from "./config.js"
-// import Pipe from "./pipe.js"
 
 export default class Bird {
     constructor() {
         this.canvas = new Canvas()
         this.config = new Config()
-        // this.pipe = new Pipe()
 
         this.imageBird = new Image()
         this.imageBird.src = 'Images/bird.png'
@@ -49,10 +47,9 @@ export default class Bird {
     }
 
     refreshGame() {
+
         alert('Game over')
         location.reload()
-
-        this.config.gravity = 1
 
         this.birdPositionY = (this.canvas.background.height / 2) - (this.birdHeight / 2)
     }

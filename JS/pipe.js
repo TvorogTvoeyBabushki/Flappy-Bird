@@ -1,7 +1,6 @@
 import Canvas from "./canvas.js"
 import Config from "./config.js"
-import Bird from "./bird.js"
-import Score from "./score.js"
+// import WindowGameOver from "./windowGameOver.js"
 
 export default class Pipe {
     constructor() {
@@ -13,20 +12,17 @@ export default class Pipe {
 
         this.canvas = new Canvas()
         this.config = new Config()
-        this.bird = new Bird()
-        this.score = new Score()
+        // this.windowGameOver = new WindowGameOver()
 
-        this.gap = 90 // 100 ???
+        this.gap = 90
         this.spaceBettwenPipe = 100
         this.pipe = [{
             x: this.canvas.element.width,
-            y: 0 // ??
+            y: 0
         }]
     }
 
-    updata() {
-        this.bird.birdPositionY += this.config.gravity
-
+    updata(bird, score, gameLoop) {
         this.pipe.forEach(pipe => {
             pipe.x--
 
@@ -42,11 +38,11 @@ export default class Pipe {
             }
 
             if(pipe.x === 125) {
-                this.score.increaseScore()
+                score.increaseScore()
             }
 
-            if (this.bird.birdPositionX + this.bird.birdWidth >= pipe.x && this.bird.birdPositionX <= pipe.x + this.pipeUp.width && (this.bird.birdPositionY <= pipe.y - 10 + this.pipeUp.height - 200 || this.bird.birdPositionY + this.bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || this.bird.birdPositionY + this.bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
-                this.bird.refreshGame()
+            if (bird.birdPositionX + bird.birdWidth >= pipe.x && bird.birdPositionX <= pipe.x + this.pipeUp.width && (bird.birdPositionY <= pipe.y - 10 + this.pipeUp.height - 200 || bird.birdPositionY + bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || bird.birdPositionY + bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
+                gameLoop // ???
             }
         })
     }
