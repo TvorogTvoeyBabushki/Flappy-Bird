@@ -1,6 +1,6 @@
 import Canvas from "./canvas.js"
 import Config from "./config.js"
-// import WindowGameOver from "./windowGameOver.js"
+import RefreshGame from "./gameFeatures.js"
 
 export default class Pipe {
     constructor() {
@@ -12,17 +12,19 @@ export default class Pipe {
 
         this.canvas = new Canvas()
         this.config = new Config()
-        // this.windowGameOver = new WindowGameOver()
+        this.refreshGame = new RefreshGame()
 
         this.gap = 90
         this.spaceBettwenPipe = 100
         this.pipe = [{
-            x: this.canvas.element.width,
+            x: 1.5 * this.canvas.element.width,
             y: 0
         }]
+
+        this.btnRestart = document.querySelector('.btn-flappy-bird')
     }
 
-    updata(bird, score, gameLoop, windowGameOver) {
+    updata(bird, gameLoop, windowGameOver, score, medal) {
         this.pipe.forEach(pipe => {
             pipe.x--
 
@@ -41,11 +43,21 @@ export default class Pipe {
                 score.increaseScore()
             }
 
-            if (bird.birdPositionX + bird.birdWidth >= pipe.x && bird.birdPositionX <= pipe.x + this.pipeUp.width && (bird.birdPositionY <= pipe.y - 10 + this.pipeUp.height - 200 || bird.birdPositionY + bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || bird.birdPositionY + bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
-                score.score = ''
-
+            if (bird.birdPositionX + bird.birdWidth >= pipe.x && bird.birdPositionX <= pipe.x + this.pipeUp.width && (bird.birdPositionY <= pipe.y - 5 + this.pipeUp.height - 200 || bird.birdPositionY + bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || bird.birdPositionY + bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
                 gameLoop.cancelAnimation()
-                windowGameOver.draw()
+
+                score.bestScoreRecord()
+                windowGameOver.draw(score._score, score._bestScore, medal)
+                score._score = ''
+
+                this.btnRestart.classList.add('active')
+                this.btnRestart.addEventListener('click', this.refreshGame.restart)
+
+                document.addEventListener('keydown', (event) => {
+                    if (event.keyCode === 32) {
+                        this.refreshGame.restart()
+                    }
+                })
             }
         })
     }

@@ -12,15 +12,22 @@ body {
 
 .btn-flappy-bird {
     display: none;
-    padding: 10px 20px;
+    padding: 20px 60px;
+    background: url('../Images/startGame.png') no-repeat center / cover;
 
     border: none;
-    border-radius: 5px;
     outline: none;
 
     cursor: pointer;
 
+    font-size: 0px;
+    color: transparent;
+
     position: absolute;
+}
+
+.btn-flappy-bird:active {
+    transform: translateY(5%);
 }
 
 .btn-flappy-bird.active {

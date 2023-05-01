@@ -9,16 +9,15 @@ export default class Bird {
         this.imageBird = new Image()
         this.imageBird.src = 'Images/bird.png'
 
-        this.birdWidth = 25 // 34
-        this.birdHeight = 25 // 34
+        this.birdWidth = 35
+        this.birdHeight = 25
+        this.birdJump = 40
 
         this.birdX = 0
         this.birdPositionX = (this.canvas.element.width / 2) - (this.birdWidth / 2)
 
         this.birdY
         this.birdPositionY = 239
-
-        this.btnRestart = document.querySelector('.btn-flappy-bird')
 
         this.control()
     }
@@ -32,34 +31,17 @@ export default class Bird {
         //     this.birdPositionY += this.config.gravity
         // }
 
-        // if (this.birdPositionY + this.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
-        //     this.refreshGame()
-
-        //     // this.config.gravity = 0
-
-        //     // this.btnRestart.classList.add('active')
-        //     // this.btnRestart.addEventListener('click', this.refreshGame.bind(this))
-        // }
-
         if (this.birdPositionY <= 0) {
-            this.birdPositionY += 40
+            this.birdPositionY += this.birdJump
         }
-    }
-
-    refreshGame() {
-
-        alert('Game over')
-        location.reload()
-
-        this.birdPositionY = (this.canvas.background.height / 2) - (this.birdHeight / 2)
     }
 
     draw() {
         this.config.index += .3
-        this.birdY = Math.floor((this.config.index % 9) / 3) * (this.birdWidth + 1)
+        this.birdY = Math.floor((this.config.index % 9) / 3) * (this.birdWidth - 9)
 
         if(true) {
-            this.canvas.context.drawImage(this.imageBird, this.birdX, this.birdY, this.birdWidth + 10, this.birdHeight, this.birdPositionX, this.birdPositionY, this.birdWidth + 10, this.birdHeight)
+            this.canvas.context.drawImage(this.imageBird, this.birdX, this.birdY, this.birdWidth, this.birdHeight, this.birdPositionX, this.birdPositionY, this.birdWidth, this.birdHeight)
         } else{
             this.canvas.context.save()
 
@@ -73,9 +55,13 @@ export default class Bird {
     }
 
     control() {
+        document.addEventListener('click', () => {     
+            this.birdPositionY -= this.birdJump
+        })
+
         document.addEventListener('keydown', (event) => {     
             if (event.keyCode === 32) {
-                this.birdPositionY -= 40 // 50
+                this.birdPositionY -= this.birdJump
             }
         })
     }

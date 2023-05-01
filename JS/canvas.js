@@ -15,6 +15,7 @@ export default class Canvas {
         this.foreground.src = 'Images/foreground.png'
 
         this.backgroundX = 0
+        this.backgroundY = 0
 
         this.config = new Config()
     }
@@ -23,10 +24,7 @@ export default class Canvas {
         this.config.index += .3
         this.backgroundX = -((this.config.index * this.config.speedBackground) % this.element.width)
 
-        this.context.drawImage(this.background, this.backgroundX, 0)
-        this.context.drawImage(this.background, this.backgroundX + this.element.width, 0)
-
-        // this.context.drawImage(this.foreground, this.backgroundX, this.background.height)
-        // this.context.drawImage(this.foreground, this.backgroundX + this.element.width, this.background.height)
+        this.context.drawImage(this.background, this.backgroundX, this.backgroundY)
+        this.context.drawImage(this.background, this.backgroundX + this.element.width, this.backgroundY)
     }
 }
