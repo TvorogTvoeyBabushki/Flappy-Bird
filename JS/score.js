@@ -9,6 +9,9 @@ export default class Score {
 
         this.positionX
         this.positionY = 100
+
+        this.audioScore = new Audio()
+        this.audioScore.src = 'audio/score.wav'
     }
 
     increaseScore() {

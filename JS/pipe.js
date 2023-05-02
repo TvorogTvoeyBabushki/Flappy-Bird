@@ -14,7 +14,7 @@ export default class Pipe {
         this.config = new Config()
         this.refreshGame = new RefreshGame()
 
-        this.gap = 90
+        this.gap = 80
         this.spaceBettwenPipe = 100
         this.pipe = [{
             x: 1.5 * this.canvas.element.width,
@@ -22,6 +22,8 @@ export default class Pipe {
         }]
 
         this.btnRestart = document.querySelector('.btn-flappy-bird')
+
+        this.birdCollisionPositionY = 485
     }
 
     updata(bird, gameLoop, windowGameOver, score, medal) {
@@ -41,10 +43,18 @@ export default class Pipe {
 
             if (pipe.x === 125) {
                 score.increaseScore()
+                score.audioScore.play()
             }
 
             if (bird.birdPositionX + bird.birdWidth >= pipe.x && bird.birdPositionX <= pipe.x + this.pipeUp.width && (bird.birdPositionY <= pipe.y - 5 + this.pipeUp.height - 200 || bird.birdPositionY + bird.birdHeight >= pipe.y + this.pipeUp.height + this.gap - 200) || bird.birdPositionY + bird.birdHeight >= this.canvas.element.height - this.canvas.foreground.height) {
                 gameLoop.cancelAnimation()
+
+                document.addEventListener('click', () => {
+                    bird.flyBird.pause()
+                })
+
+                bird.birdPositionY = this.birdCollisionPositionY
+                bird.dieBird.play()
 
                 score.bestScoreRecord()
                 windowGameOver.draw(score._score, score._bestScore, medal)

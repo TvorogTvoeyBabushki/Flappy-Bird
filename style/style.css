@@ -13,7 +13,7 @@ body {
 .btn-flappy-bird {
     display: none;
     padding: 20px 60px;
-    background: url('../Images/startGame.png') no-repeat center / cover;
+    background: url('../Images/btnStartGame.png') no-repeat center / cover;
 
     border: none;
     outline: none;

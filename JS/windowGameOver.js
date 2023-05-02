@@ -13,7 +13,7 @@ export default class WindowGameOver {
     }
 
     draw(score, bestScore, medal) {
-        this.windowGameOver.src = 'Images/gameOver.png'
+        this.windowGameOver.src = 'Images/windowGameOver.png'
 
         this.windowGameOver.onload = () => {
             this.canvas.context.drawImage(this.windowGameOver, this.canvas.element.width / 2 - this.windowGameOver.width / 2, this.windowGameOverPositionY)

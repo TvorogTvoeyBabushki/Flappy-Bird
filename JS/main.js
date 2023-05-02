@@ -5,6 +5,8 @@ import Bird from "./bird.js";
 import Score from "./score.js";
 import WindowGameOver from "./windowGameOver.js";
 import Medal from "./medal.js";
+import Config from "./config.js";
+import WindowGameStart from "./windowGameStart.js";
 
 class Game {
     constructor() {
@@ -14,21 +16,41 @@ class Game {
         this.score = new Score()
         this.windowGameOver = new WindowGameOver()
         this.medal = new Medal(this.score)
+        this.config = new Config()
+        this.windowGameStart = new WindowGameStart()
 
         this.gameLoop = new GameLoop(this.updata.bind(this), this.draw.bind(this))
         this.score.localStorageScore()
+
+        this.canvas.element.addEventListener('click', () => {
+            this.config.gamePlaying = true
+        })
+
+        document.addEventListener('keydown', (event) => {
+            if (event.keyCode === 32) {
+                this.config.gamePlaying = true
+            }
+        })
+
+        
+        this.canvas.element.addEventListener('touchcancel', () => {
+            this.config.gamePlaying = true
+        })
     }
 
     updata() {
-        this.pipe.updata(this.bird, this.gameLoop, this.windowGameOver, this.score, this.medal)
-        this.bird.updata()
+        if (this.config.gamePlaying) {
+            this.pipe.updata(this.bird, this.gameLoop, this.windowGameOver, this.score, this.medal)
+            this.bird.updata()
+        }
     }
 
     draw() {
         this.canvas.draw()
         this.pipe.draw()
         this.bird.draw()
-        this.score.draw()
+        if (this.config.gamePlaying) this.score.draw()
+        if (!this.config.gamePlaying) this.windowGameStart.draw()
     }
 }
 new Game()
