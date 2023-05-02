@@ -26,12 +26,10 @@ export default class Bird {
         this.birdPositionY = 239
 
         this.control()
-
-        this.a = 0
     }
 
     updata() {
-        this.a = this.birdPositionY += this.config.gravity
+        this.birdPositionY += this.config.gravity
 
         if (this.birdPositionY <= 0) {
             this.birdPositionY += this.birdJump
@@ -58,9 +56,13 @@ export default class Bird {
             }
         })
 
-        document.addEventListener('touchstart', () => {
+        this.canvas.element.addEventListener('touchstart', () => {
             this.birdPositionY -= this.birdJump
             this.flyBird.play()
+        })
+
+        this.canvas.element.addEventListener('touchend', () => {
+            this.birdPositionY += this.config.gravity
         })
     }
 }
