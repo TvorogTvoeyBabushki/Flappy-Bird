@@ -53,6 +53,10 @@ export default class Pipe {
                     bird.flyBird.pause()
                 })
 
+                document.addEventListener('touchstart', () => {
+                    bird.flyBird.pause()
+                })
+
                 bird.birdPositionY = this.birdCollisionPositionY
                 bird.dieBird.play()
 
