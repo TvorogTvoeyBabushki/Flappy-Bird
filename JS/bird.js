@@ -44,25 +44,23 @@ export default class Bird {
     }
 
     control() {
-        this.canvas.element.addEventListener('click', () => {
-            this.birdPositionY -= this.birdJump
-            this.flyBird.play()
-        })
+        if (document.documentElement.clientWidth > 1080) {
+            this.canvas.element.addEventListener('click', () => {
+                this.birdPositionY -= this.birdJump
+                this.flyBird.play()
+            })
+        } else {
+            this.canvas.element.addEventListener('touchstart', () => {
+                this.birdPositionY -= this.birdJump
+                this.flyBird.play()
+            })
+        }
 
         document.addEventListener('keydown', (event) => {
             if (event.keyCode === 32) {
                 this.birdPositionY -= this.birdJump
                 this.flyBird.play()
             }
-        })
-
-        this.canvas.element.addEventListener('touchstart', () => {
-            this.birdPositionY -= this.birdJump
-            this.flyBird.play()
-        })
-
-        this.canvas.element.addEventListener('touchend', () => {
-            this.birdPositionY += this.config.gravity
         })
     }
 }
