@@ -58,7 +58,7 @@ export default class Bird {
             }
         })
 
-        this.canvas.element.addEventListener('touchstart', () => {
+        document.addEventListener('touchstart', () => {
             this.birdPositionY -= this.birdJump
             this.flyBird.play()
         })
