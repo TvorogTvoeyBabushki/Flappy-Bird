@@ -31,9 +31,8 @@ class Game {
                 this.config.gamePlaying = true
             }
         })
-
         
-        this.canvas.element.addEventListener('touchcancel', () => {
+        this.canvas.element.addEventListener('touchstart', () => {
             this.config.gamePlaying = true
         })
     }
