@@ -7,6 +7,7 @@
 * HTML
 * CSS
 * Чистый JavaScript
+********* 
 Код написан в Visual Studio Code
 # Как использовать
 * Расширение Live Server в Visual Studio Code
